@@ -35,7 +35,7 @@ The review fingerprint detects changes to an exported artifact. Reviewer names a
 
 1. In the review desk, compare every instruction with its evidence. Keep the browser refresh classified as **troubleshooting**, not a normal process step.
 2. Answer the open question. For the fictional sample, confirm that pending and refunded rows are excluded.
-3. Check each reviewed observation, enter your name, then **Approve and freeze**. Export the approved JSON to a private location such as `local-data/approved.json`.
+3. Check each reviewed observation, enter your name, then **Approve and freeze**. Export the approved JSON to a private location such as `local-data/approved.json`. Use **Export SOP (.md)** for a readable handoff with separate normal steps, exceptions and troubleshooting.
 4. Read the [adapter contract](examples/workflow-replay/README.md). If it matches your reviewed procedure, run:
 
 ```sh

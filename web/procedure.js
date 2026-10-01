@@ -22,7 +22,11 @@ export function draftFromRecords(records) {
 }
 export function acceptModelDraft(value, records) {
   // A provider cannot choose evidence, approval, revision lineage or an executable adapter.
-  return validateDraft({title:value?.title,context:value?.context,revision:1,origin:'AI draft, source matching is not factual validation',evidence:structuredClone(records),steps:value?.steps?.map(s=>({text:s.text,sourceId:s.sourceId,quote:s.quote,kind:s.kind,reviewed:false})),questions:value?.questions?.map(q=>({question:typeof q==='string'?q:q.question,answer:''}))});
+  if(!Array.isArray(value?.steps))throw new Error('Model draft must contain a steps array.');
+  const steps=value.steps.map(s=>({text:s.text,sourceId:s.sourceId,quote:s.quote,kind:s.kind,reviewed:false}));
+  const covered=new Set(steps.map(s=>s.sourceId));
+  for(const r of records)if(!covered.has(r.id))steps.push({text:r.text,sourceId:r.id,quote:r.text,kind:'unclassified',reviewed:false});
+  return validateDraft({title:value?.title,context:value?.context,revision:1,origin:'AI draft, source matching is not factual validation',evidence:structuredClone(records),steps,questions:value?.questions?.map(q=>({question:typeof q==='string'?q:q.question,answer:''}))});
 }
 export function reviewIssues(d) {
   validateDraft(d);
@@ -55,4 +59,10 @@ export async function verify(snapshot) {
 }
 export async function newRevision(snapshot) {
   const document=structuredClone(await verify(snapshot));document.revision+=1;document.parentDigest=snapshot.digest;document.origin='Revision of an approved snapshot';document.steps.forEach(s=>s.reviewed=false);return document;
+}
+export async function procedureMarkdown(snapshot) {
+  const d=await verify(snapshot);
+  const escape=s=>String(s).replace(/[\\`*_{}\[\]<>#]/g,'\\$&');
+  const sections=[['normal','Normal process'],['exception','Exceptions'],['troubleshooting','Observed troubleshooting, outside the normal process']];
+  return `# ${escape(d.title)}\n\n${escape(d.context)}\n\nRevision ${d.revision}. Reviewed by ${escape(snapshot.review.reviewer)} on ${snapshot.review.approvedAt}.\n\n`+sections.map(([kind,title])=>`## ${title}\n\n`+d.steps.filter(s=>s.kind===kind).map((s,i)=>`${i+1}. ${escape(s.text)}\n\n   Evidence: ${escape(s.sourceId)}\n\n${s.quote.split('\n').map(line=>`   > ${escape(line)}`).join('\n')}\n`).join('\n')).join('\n')+`\n## Review questions\n\n${d.questions.map(q=>`- ${escape(q.question)}\n  ${escape(q.answer)}`).join('\n')}\n\nSnapshot fingerprint: ${snapshot.digest}\n\nSelf-attested local prototype review. Keep the approved JSON alongside this readable export to verify its source snapshot.\n`;
 }
