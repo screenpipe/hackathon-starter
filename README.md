@@ -2,7 +2,7 @@
 <!-- https://screenpipe.com -->
 # Build agents that remember how work gets done
 
-Watch someone do a real task, document it accurately, and help someone else repeat it. Three connected starters for the [42 Paris hackathon, October 16 to 18](https://luma.com/bnre6nou).
+Watch someone do a real task, document it accurately, and help someone else repeat it. Nine projects for the [42 Paris hackathon, October 16 to 18](https://luma.com/bnre6nou).
 
 ## Start with a workflow review
 
@@ -19,7 +19,7 @@ Open **http://localhost:4242**. No dependencies to install, Screenpipe account o
 
 ![The workflow review desk](docs/dashboard.png)
 
-## Three projects to fork
+## Start with the SOP workflow
 
 | Starter | Working example | Build further |
 |---|---|---|
@@ -30,6 +30,21 @@ Open **http://localhost:4242**. No dependencies to install, Screenpipe account o
 The bundled candidate is curated fictional data, not proof that AI discovered a workflow. For your own captured work, the optional AI path actually takes observed records as input. It is unapproved output until a person checks it. We have tested the provider adapter with mocked responses; real-provider quality is unverified.
 
 The review fingerprint detects changes to an exported artifact. Reviewer names are self-attested. This is a hackathon prototype, not authenticated enterprise approval, access control or an audit service.
+
+## Six more projects to fork
+
+These CLI projects create local Markdown reports. Each includes fictional input, a sample output, acceptance tests and a concrete extension to build. They use deterministic extraction or comparison, so you can inspect the baseline before adding AI.
+
+| Project | Run | Useful output |
+|---|---|---|
+| [Support escalation packet](examples/support-escalation/README.md) | `bun run escalation` | Sourced incident timeline, failed attempts and unresolved questions |
+| [Shift handoff](examples/shift-handoff/README.md) | `bun run handoff` | Decisions, blockers, action owners and receiver checks |
+| [Evidence search](examples/evidence-search/README.md) | `bun run search --query "export"` | Original matching records, timestamps and app context |
+| [SOP change review](examples/sop-change-review/README.md) | `bun run changes` | Proposed instruction, classification, evidence and context changes |
+| [Onboarding walkthrough](examples/onboarding-walkthrough/README.md) | `bun run onboarding` | Practice checklist with exception discussions and clarification notes |
+| [Repeated-task finder](examples/repetition-finder/README.md) | `bun run repetition` | Repeated task runs ranked by annotated observed minutes |
+
+Try all six with `bun run projects`. Reports get unique filenames under `output/`. Use the individual project README for the input contract and commands for your own data. The escalation, handoff and repetition starters require explicit reviewed annotations; they do not infer those fields from raw recordings.
 
 ## Try the full handoff
 
@@ -86,6 +101,6 @@ Optional smaller examples are still available: [meeting follow-up](examples/meet
 - [Screenpipe MCP](https://github.com/screenpipe/screenpipe/tree/main/packages/screenpipe-mcp#installation), [cloud plugin](https://github.com/screenpipe/screenpipe-cloud), [Gemini CLI extension](https://github.com/screenpipe/gemini-cli-extension), [community projects](https://github.com/screenpipe/awesome-screenpipe).
 - [Optional advanced River training project](https://github.com/screenpipe/river-ai-screenpipe-training), with separate compute/model requirements.
 
-Run `bun test` and `bun run demo` to check your fork. Tests run on Mac, Windows and Linux. They cover grounding, review gates, unchanged snapshots, revision lineage, replay on two inputs and failure handling. CI is not evidence of production deployment or independent customer acceptance.
+Run `bun test` and `bun run demo` to check your fork. Tests run on Mac, Windows and Linux. They cover grounding, review gates, unchanged snapshots, revision lineage, replay on two inputs, project report correctness and failure handling. CI is not evidence of production deployment or independent customer acceptance.
 
 `local-data/`, `output/` and `.env` are ignored by Git. Exports contain quoted evidence, so inspect them before sharing. Capture and optional cloud services have their own [data flows](https://docs.screenpipe.com). Original sample code and fictional fixtures use MIT; Screenpipe and linked projects retain their own licenses.
