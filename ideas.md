@@ -1,20 +1,22 @@
 <!-- screenpipe — AI that knows everything you've seen, said, or heard -->
 <!-- https://screenpipe.com -->
-# Things to build
+# Enterprise-shaped projects
 
-These are ideas, not completed examples. Pick a small outcome another person can test.
+Start with one repeated task and an observable result. These are suggested projects, not customer commitments or changes to the hackathon rules. Use fictional or permissioned records, and keep customer names and private data out of public examples.
 
-| Idea | First useful result | Stretch |
+| Project | First useful result | Acceptance test |
 |---|---|---|
-| Coding handoff | Explain the last task, tested result and next step from a work session | Resume the task in a second coding agent |
-| Research log | A short answer with links to the pages and notes that support it | Flag contradictory sources |
-| Promise tracker | Reviewed list of commitments and unresolved owners | Draft a reminder, with explicit approval before scheduling |
-| Bug reproduction assistant | Turn observed failure context into reproducible steps | Validate the steps in a disposable environment |
-| Study coach | Questions drawn from material you actually studied | Spaced repetition with evidence for each answer |
-| Support escalation packet | A timeline of an issue and what has already been tried | Draft an internal handoff with private content removed |
-| CRM update reviewer | Proposed changes from a meeting, each with a source | Show a diff and require approval before saving |
-| Privacy lens | Highlight sensitive fields in synthetic screenshots or text | Compare local redaction approaches |
-| Team workflow handoff | Let a teammate run a reviewed routine on sample inputs | Measure where they needed help |
-| Personal work map | Searchable project history with decisions and evidence | A custom interface for a specific profession |
+| Invoice investigation SOP | A reviewer can follow the checks, evidence and exception decisions | Separate the normal process from a disputed charge; reviewer records missing context |
+| Order exception handoff | Explain why an order needs intervention and what happens next | A teammate handles a second fictional case without asking the author |
+| Process comparison | Compare two sessions and identify repeated steps and variations | Correctly keep a one-off troubleshooting action out of the standard process |
+| Evidence repair assistant | Find steps with missing, stale or mismatched source context | Detect a deliberately mismatched screenshot or quote and block approval |
+| Workflow revision review | Show changes proposed after new observations | Approved version remains unchanged; changed steps need another review |
+| Team onboarding guide | Turn one employee's task into instructions another person can use | A new operator completes the task and records every clarification needed |
+| Support escalation packet | A sourced timeline of symptoms, attempted fixes and unresolved questions | Do not repeat a failed fix or describe an unverified recovery as resolved |
+| Approval-aware replay | Run a small adapter from a reviewed procedure | Refuse modified approvals and malformed inputs; produce a receipt on a second valid input |
+| Reviewer questions inbox | Surface missing role, policy and exception context | Every question has an answer or keeps the procedure in draft |
+| Permissioned evidence redaction | Remove selected sensitive fields from a synthetic review package | Check text, screenshots and exported revisions, and show what remains visible |
 
-For a good demo, show the input, the useful result, one failure case and how someone else can run it. Explain which parts work today and which are prototypes.
+Optional memory projects: meeting follow-ups, research logs, coding handoffs and study aids. Choose them when they serve a specific user outcome.
+
+Record review effort, correction count, missing context and whether another person can repeat the task. Report time saved only when you actually measure a comparable task. Working code, useful documentation and production deployment are separate outcomes.

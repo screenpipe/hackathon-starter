@@ -57,9 +57,16 @@ export function summarizeOrders(csv: string) {
     if (row.length !== 4 || !row[0] || !row[1] || !["paid", "pending", "refunded"].includes(row[3]) || !/^\d+(\.\d{1,2})?$/.test(row[2])) throw new Error("Malformed order. This starter accepts simple unquoted CSV only.");
     if (ids.has(row[0])) throw new Error("Duplicate order ID. Resolve duplicates before replay.");
     ids.add(row[0]);
-    if (row[3] === "paid") totals.set(row[1], (totals.get(row[1]) || 0) + Math.round(Number(row[2]) * 100));
+    if (/^\s*[=+@-]|[\x00-\x1f]/.test(row[1])) throw new Error("Customer name could be interpreted as a spreadsheet formula.");
+    const [whole, fraction = ""] = row[2].split(".");
+    const exactCents = BigInt(whole) * 100n + BigInt(fraction.padEnd(2, "0"));
+    if (exactCents > BigInt(Number.MAX_SAFE_INTEGER)) throw new Error("Amount exceeds safe cent precision.");
+    const cents = Number(exactCents);
+    const total = (totals.get(row[1]) || 0) + cents;
+    if (!Number.isSafeInteger(cents) || !Number.isSafeInteger(total)) throw new Error("Amount exceeds safe cent precision.");
+    if (row[3] === "paid") totals.set(row[1], total);
   }
-  return [...totals].sort(([a], [b]) => a.localeCompare(b)).map(([customer, cents]) => ({ customer, total: (cents / 100).toFixed(2) }));
+  return [...totals].sort(([a], [b]) => a.localeCompare(b)).map(([customer, cents]) => ({ customer, total: `${Math.floor(cents / 100)}.${String(cents % 100).padStart(2, "0")}` }));
 }
 
 export async function fetchLocalRecords(start: string, end: string, contentType = "all"): Promise<Record[]> {

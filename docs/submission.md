@@ -17,3 +17,7 @@ Include:
 Keep private data and credentials out of the repo and video. Permission for Screenpipe to feature a project is separate from submitting it for judging. Hiring interest is optional and separate too.
 
 You can use the repository's project-showcase issue template for a public, optional showcase. It is not the official judging submission unless organizers explicitly adopt it.
+
+## Show a useful handoff
+
+For a workflow project, show the source observation, reviewed procedure, one exception and what the reviewer corrected. Have another person attempt the task. If you demonstrate automation, also show a second input, a failure case and the exact boundary between generated text and executable code. These are suggested evidence checks, not official judging criteria.
