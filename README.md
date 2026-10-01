@@ -32,7 +32,7 @@ The event tracks are **Agents That Remember**, **Your Data, Your Interface**, an
 ## Participant checklist
 
 1. Register through [the event page](https://luma.com/bnre6nou). Use the organizer's Discord invitation and follow its `#hackathon-access` instructions.
-2. Get your participant Business access link from the organizers. Individual redemption links are private and must not be committed to a repo. Access rollout status and terms will be linked here once verified.
+2. Get your participant Business access link from the organizers. The 30-day access page is being prepared; its link and terms will be added here after activation is verified. The sample projects already work without a subscription.
 3. Install [Screenpipe](https://screenpipe.com/download), enable the permissions it requests and capture a small, non-sensitive work session.
 4. Run a sample above. Then follow [local-data setup](docs/local-data.md).
 5. Test your project with someone outside your team. Record what failed and fix it.
