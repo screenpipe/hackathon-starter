@@ -1,0 +1,16 @@
+{
+  "name": "screenpipe-hackathon-starter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "bun src/server.ts",
+    "demo": "bun src/cli.ts demo",
+    "meeting": "bun src/cli.ts meeting",
+    "workflow": "bun src/cli.ts workflow",
+    "capture": "bun src/cli.ts capture",
+    "doctor": "bun src/cli.ts doctor",
+    "test": "bun test"
+  },
+  "engines": { "bun": ">=1.3.0" }
+}

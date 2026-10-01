@@ -1,0 +1,33 @@
+name: Project showcase
+description: Share a runnable project publicly. This is not the official judging form.
+title: "Project: "
+body:
+  - type: markdown
+    attributes:
+      value: "This issue is public. Use sample data and public links only. Do not include private contact details, recordings or credentials."
+  - type: textarea
+    id: problem
+    attributes: {label: What did you build?, description: Who is it for and what useful result does it produce?}
+    validations: {required: true}
+  - type: input
+    id: repo
+    attributes: {label: Repository or runnable demo}
+    validations: {required: true}
+  - type: input
+    id: video
+    attributes: {label: Two-minute demo URL}
+  - type: textarea
+    id: setup
+    attributes: {label: How to run it, description: Include requirements, costs, sample inputs and expected output.}
+    validations: {required: true}
+  - type: textarea
+    id: limits
+    attributes: {label: Known limits and teammate contributions}
+    validations: {required: true}
+  - type: checkboxes
+    id: feature
+    attributes:
+      label: Optional permission to feature
+      options:
+        - label: Screenpipe may feature the public materials linked in this issue, with credit and a link to this project.
+          required: false
